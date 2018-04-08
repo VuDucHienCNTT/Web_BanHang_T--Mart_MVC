@@ -1,0 +1,39 @@
+﻿.grid_2-bottom .grid_2-left a {
+    background: #d1e4dd;
+}
+
+    .grid_2-bottom .grid_2-left a:hover {
+        color: #ffffff;
+        background: #067230;
+    }
+
+
+.grid_2-bottom .grid_2-right a {
+    background: #ed9e48;
+}
+
+    .grid_2-bottom .grid_2-right a:hover {
+        color: #ffffff;
+        background: #067230;
+    }
+
+.popover {
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: unset;
+}
+
+.popover-title {
+    border-radius: unset;
+    background-color: #73AD21;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+}
+/* Popover Body */
+.popover-content {
+    background-color: coral;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px;
+}

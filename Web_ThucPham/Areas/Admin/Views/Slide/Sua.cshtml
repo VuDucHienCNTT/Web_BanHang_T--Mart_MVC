@@ -1,0 +1,82 @@
+﻿@model Model.EntityFramework.Slide
+
+@{
+    ViewBag.Title = "Cập nhật slide";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Assets/Admin/dist/css/buttonTrangthai.css" rel="stylesheet" />
+
+@section header{
+    Cập nhật slide
+}
+
+@section js{
+    <script src="~/Assets/Admin/js/buttonTrangthai.js"></script>
+    <script>
+        $(function () {
+            $('#toggle-trangthai').bootstrapToggle({
+                on: 'Kích hoạt',
+                off: 'Khóa'
+            });
+        })
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Hình ảnh slide", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9 col-xs-9">
+                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @id = "txtHinhAnh", @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1 col-xs-1">
+                <input type="button" class="btn btn-primary" value="..." id="ChonAnh" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Link slide", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LinkSlide, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.LinkSlide, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mô tả slide", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.MoTaSlide, new { @class = "form-control", @rows = "4" })
+                @Html.ValidationMessageFor(model => model.MoTaSlide, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.TrangThai, new { @id = "toggle-trangthai", @checked = "checked", @class = "checkbox" })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Người tạo slide", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdNguoiTao, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MoTaSlide, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-success" />
+                <a href="javascript:void(0);" class="btn btn-default" onclick="history.go(-1);">Quay lại</a>
+            </div>
+        </div>
+    </div>
+}

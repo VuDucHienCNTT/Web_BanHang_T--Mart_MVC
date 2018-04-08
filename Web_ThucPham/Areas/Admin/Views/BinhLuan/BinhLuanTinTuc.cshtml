@@ -1,0 +1,88 @@
+﻿@model PagedList.PagedList<Model.EntityFramework.BinhLuan>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Danh sách bình luận Tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header{
+    Bình luận Tin tức
+}
+@section js{
+    <script src="~/Assets/Admin/quantri/Binhluancontroler.js"></script>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Danh sách bình luận tin tức
+            </div>
+            <br />
+            @using (Html.BeginForm("BinhLuanTinTuc", "BinhLuan", FormMethod.Get))
+            {
+                <div class="row form-group">
+                    <div class="col-sm-3 col-xs-11 pull-right" style="margin-right:15px;">
+                        <input type="search" name="tukhoa" value="@ViewBag.TuKhoa" class="form-control" placeholder="Nhập từ khóa">
+                    </div>
+                </div>
+            }
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Nội dung</th>
+                                <th>Url tin tức</th>
+                                <th>Ngày bình luận</th>
+                                <th>Người bình luận</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bltintuc in Model)
+                            {
+                                <tr id="row_@bltintuc.Id">
+                                    <td>@bltintuc.Id</td>
+                                    @if (bltintuc.NoiDung.Length > 80)
+                                    {
+                                        <td>@bltintuc.NoiDung.Substring(0, 80)...</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@bltintuc.NoiDung</td>
+                                    }
+                                    <td>
+                                        @if (bltintuc.TinTuc.TieuDe.Length > 30)
+                                        {
+                                            <a href="@bltintuc.Url" target="_blank" title="@bltintuc.TinTuc.TieuDe">@bltintuc.TinTuc.TieuDe.Substring(0, 30)...</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@bltintuc.Url" target="_blank" title="@bltintuc.TinTuc.TieuDe">@bltintuc.TinTuc.TieuDe</a>
+                                        }
+                                    </td>
+                                    <td>@bltintuc.NgayBinhLuan.Value.ToString("dd/MM/yyyy")</td>
+                                    <td>@bltintuc.TaiKhoan.TenHienThi</td>
+                                    <td><a href="#" class="btn-active" title="click để thay đổi trạng thái" data-id="@bltintuc.Id">@(bltintuc.TrangThai ? "Hiển thị" : "Không hiển thị")</a></td>
+                                    <td>
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = bltintuc.Id }, new AjaxOptions
+                                       {
+                                           Confirm = "Bạn có chắc chắn muốn xóa?",
+                                           OnComplete = "$('#row_" + @bltintuc.Id + "').remove()",
+                                           HttpMethod = "Delete"
+                                       })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("BinhLuanTinTuc", new { page, @tukhoa = @ViewBag.TuKhoa }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,329 @@
+﻿
+@{
+    Layout = null;
+    <title>@ViewBag.Title </title>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Assets/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="~/Assets/Admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Assets/Admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="~/Assets/Admin/vendor/morrisjs/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/Assets/Admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <style>
+        th {
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Admin/Home/Index">QUẢN TRỊ</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/Admin/Dangnhap/Dangxuat"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-users"></i> Quản lý Tài khoản<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/TaiKhoan/Them">Thêm mới Tài khoản</a>
+                                </li>
+                                <li>
+                                    <a href="#">Danh sách Tài khoản <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/Admin/TaiKhoan/TkAdmin">Tài khoản Admin</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/TaiKhoan/TkNhanVien">Tài khoản Nhân viên</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/TaiKhoan/TkKhachHang">Tài khoản Khách hàng</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-product-hunt"></i> Danh mục Sản phẩm<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/DanhMucSanPham/Them">Thêm danh mục sản phẩm</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/DanhMucSanPham/DmucSanpham">Danh mục sản phẩm</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-product-hunt"></i> Quản lý Sản phẩm<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/SanPham/Them">Thêm mới sản phẩm</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">Danh sách Sản phẩm <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/Admin/SanPham/AllSanPham">Tất cả sản phẩm</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/SanPham/SanPhamDaDuyet">Sản phẩm đã duyệt</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/SanPham/SanPhamChoDuyet">Sản phẩm chờ duyệt</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/SanPham/SanPhamTop">Top sản phẩm</a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-newspaper-o"></i> Danh mục Tin tức<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/DanhMucTinTuc/Them">Thêm mới danh mục tin</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/DanhMucTinTuc/DmucTin">Danh mục tin tức</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-newspaper-o"></i> Quản lý Tin tức<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/TinTuc/Them">Soạn tin mới</a>
+                                </li>
+                                <li>
+                                    <a href="#">Danh sách Tin tức <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/Admin/TinTuc/AllTin">Tất cả tin tức</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/TinTuc/TinDaDuyet">Tin đã duyệt</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Admin/TinTuc/TinChoDuyet">Tin chờ duyệt</a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-slideshare"></i> Quản lý Slide<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/Slide/Them">Soạn slide mới</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Slide/AllSlide">Tất cả slide</a>
+                                </li>
+                                @*<li>
+                                        <a href="#">Danh sách Tin tức <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="/Admin/TinTuc/AllTin">Tất cả tin tức</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Admin/TinTuc/TinDaDuyet">Tin đã duyệt</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Admin/TinTuc/TinChoDuyet">Tin chờ duyệt</a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-server"></i> Quản lý Menu chính<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/Menu/Them">Thêm mới menu</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Menu/DsMenu">Danh sách menu</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Quản lý Bình luận<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/BinhLuan/BinhLuanSanPham">Bình luận Sản phẩm</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/BinhLuan/BinhLuanTinTuc">Bình luận Tin tức</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-briefcase"></i> Quản lý Quảng cáo<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/QuangCao/Them">Thêm mới Quảng cáo</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/QuangCao/DanhSachQuangCao">Danh sách Quảng cáo</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thống kê<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/ThongKe/SanPham">Thống kê sản phẩm</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/ThongKe/XuatExcel">Thống kê sản phẩm Excel</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">@RenderSection("header", required: true)</h2>
+                    </div>
+                </div>
+
+                <!-- /.col-lg-12 -->
+                @if (TempData["AlertMessage"] != null)
+                {
+                    <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                        @TempData["AlertMessage"]
+                    </div>
+                }
+                @RenderBody()
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="~/Assets/Admin/vendor/jquery/jquery-3.1.1.min.js"></script>
+
+    <script src="~/Assets/Admin/js/sb-admin-2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Assets/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Assets/Admin/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Assets/Admin/vendor/raphael/raphael.min.js"></script>
+    <script src="~/Assets/Admin/vendor/morrisjs/morris.min.js"></script>
+    <script src="~/Assets/Admin/data/morris-data.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Assets/Admin/ckfinder/ckfinder.js"></script>
+    <script src="~/Assets/Admin/ckeditor/ckeditor.js"></script>
+
+    @RenderSection("js", required: false)
+
+    <script>
+        CKEDITOR.replace('editorNoiDung');
+    </script>
+    <!--Thêm ảnh-->
+    <script language="javascript" type="text/javascript">
+        $("#ChonAnh").click(function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $("#txtHinhAnh").val(fileUrl);
+            };
+            finder.popup();
+        });
+    </script>
+    <script src="~/Scripts/scrolltotop.js"></script>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-group-sm back-to-top" role="button" title="Lên đầu trang" data-toggle="tooltip" data-placement="left">
+        <span class="glyphicon glyphicon-chevron-up" style="height:20px"></span>
+    </a>
+    <style>
+        .back-to-top {
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+    </style>
+</body>
+</html>

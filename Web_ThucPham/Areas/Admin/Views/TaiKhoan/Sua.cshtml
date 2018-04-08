@@ -1,0 +1,101 @@
+﻿@model Model.EntityFramework.TaiKhoan
+@{
+    ViewBag.Title = "Cập nhật tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/Assets/Admin/dist/css/buttonTrangthai.css" rel="stylesheet" />
+
+@section header{
+    Cập nhật tài khoản
+}
+
+@section js{
+    <script src="~/Assets/Admin/js/buttonTrangthai.js"></script>
+    <script>
+        $(function () {
+            $('#toggle-trangthai').bootstrapToggle({
+                on: 'Kích hoạt',
+                off: 'Khóa'
+            });
+        })
+    </script>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Tên hiển thị", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.EditorFor(model => model.TenHienThi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenHienThi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Email đăng nhập", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.EditorFor(model => model.EmailDangNhap, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailDangNhap, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Mật khẩu đăng nhập", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Địa chỉ", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.EditorFor(model => model.SoDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoDT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.CheckBoxFor(model => model.TrangThai, new { @id = "toggle-trangthai", @checked = "checked", @class = "checkbox" })
+                    @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Quyền hạn", htmlAttributes: new { @class = "control-label col-sm-5" })
+                <div class="col-sm-7">
+                    @Html.DropDownListFor(model => model.QuyenHan, new List<SelectListItem>() {
+                new SelectListItem() {Text="Admin",Value="Admin" },
+                new SelectListItem() {Text="Nhân viên",Value="NhanVien" },
+                new SelectListItem() {Text="Khách hàng",Value="KhachHang" },
+           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.QuyenHan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <input type="submit" value="Cập nhật" class="btn btn-success" />
+                    <a href="javascript:void(0);" class="btn btn-default" onclick="history.go(-1);">Quay lại</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+}

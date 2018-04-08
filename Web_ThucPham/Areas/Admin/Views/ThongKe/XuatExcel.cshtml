@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header{
+    Thống kê sản phẩm Excel
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @if (ViewBag.dem == null)
+                {
+                    <p>Thống kê sản phẩm</p>
+                }
+                else
+                {
+                    <p>Tìm thấy: <b>@ViewBag.dem</b> sản phẩm</p>
+                }
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="row">
+                    @using (Html.BeginForm("XuatExcel", "ThongKe", FormMethod.Post))
+                    {
+
+                        <div class="col-sm-3">
+                            Từ ngày:
+                            <input type="date" class="form-control" value="@ViewBag.tungay" name="tungay" />
+                        </div>
+                        <div class="col-sm-3">
+                            Đến ngày:
+                            <input type="date" class="form-control" value="@ViewBag.denngay" name="denngay" />
+                        </div>
+                        <div class="col-sm-1">
+                            <br />
+                            <input type="submit" value="Xuất Excel" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
